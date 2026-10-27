@@ -1,0 +1,331 @@
+/* Thomás Barbosa, personal trainer.
+   Mesma base editorial da Charme, com a marca do Thomás: preto, branco e verde-limão,
+   uma família só (Poppins) misturando Light e Bold nos títulos, fotos em preto e branco. */
+
+:root {
+  --preto: #000000;
+  --preto-2: #111111;
+  --branco: #ffffff;
+  --branco-2: #f2f2f2;
+  --lima: #d5f455;
+  --texto-dim: #b3b3b3;
+  --texto-fraco: #8a8a8a;
+  --cinza: #555555;
+  --fio: rgba(255,255,255,.12);
+  --fio-claro: rgba(0,0,0,.12);
+
+  --font: 'Poppins', Arial, system-ui, sans-serif;
+
+  --w: 1280px;
+  --gutter: clamp(24px, 4vw, 56px);
+  --rhythm: clamp(88px, 11vw, 160px);
+  --ease: cubic-bezier(.22, 1, .36, 1);
+}
+
+/* ---------- Base ---------- */
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 72px; -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background: var(--preto);
+  color: var(--texto-dim);
+  font: 400 16px/1.7 var(--font);
+  -webkit-font-smoothing: antialiased;
+}
+img { display: block; max-width: 100%; height: auto; }
+figure { margin: 0; }
+a { color: inherit; }
+p { margin: 0; text-wrap: pretty; }
+h1, h2, h3 { margin: 0; font-weight: inherit; }
+ul, ol { margin: 0; padding: 0; list-style: none; }
+
+:focus-visible { outline: 2px solid var(--branco); outline-offset: 3px; }
+.section--light :focus-visible { outline-color: var(--preto); }
+
+.sr-only {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+}
+
+.skip {
+  position: absolute; left: 16px; top: -100px; z-index: 100;
+  background: var(--branco); color: var(--preto); padding: 12px 16px;
+  font-weight: 700; font-size: 15px; text-decoration: none;
+}
+.skip:focus { top: 16px; }
+
+.wrap { width: 100%; max-width: calc(var(--w) + 2 * var(--gutter)); margin-inline: auto; padding-inline: var(--gutter); }
+.section { padding-block: var(--rhythm); }
+
+/* ---------- Tipografia ---------- */
+/* títulos em caixa normal misturando Light e Bold, como o slogan do manual */
+.hero-title, .h2, .phone, .price-board tbody th, .price-board td, .menu-panel a, .slogan-text {
+  font-family: var(--font);
+  letter-spacing: -.02em;
+  color: var(--branco);
+}
+.h2 { margin-bottom: 28px; font-weight: 300; font-size: clamp(32px, 5vw, 60px); line-height: 1.08; text-wrap: balance; }
+.h2 strong, .hero-title strong, .slogan-text strong { font-weight: 700; }
+/* sobre o preto, a parte em Bold vai em verde (16,9:1); sobre o claro, fica preta */
+.section:not(.section--light) .h2 strong, .hero-title strong { color: var(--lima); }
+.lead { font-size: clamp(17px, 1.4vw, 20px); line-height: 1.55; color: var(--branco); max-width: 40ch; }
+
+/* rótulo de seção: texto curto em caixa normal, sem fio nem espaçamento largo */
+.label { margin-bottom: 18px; font-weight: 700; font-size: 15px; line-height: 1.3; color: var(--lima); }
+
+/* ---------- Seções claras ---------- */
+.section--light { background: var(--branco); color: var(--cinza); }
+.section--light .h2, .section--light .lead { color: var(--preto); }
+.section--light .label { color: var(--cinza); } /* o verde nunca é texto sobre o branco (1,24:1) */
+
+/* ---------- Botões ---------- */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  min-height: 52px; padding: 14px 28px;
+  border: 1px solid transparent;
+  font: 700 16px/1.2 var(--font);
+  text-decoration: none; text-align: center;
+  color: var(--preto);
+  transition: background-color .25s var(--ease), border-color .25s var(--ease), color .25s var(--ease);
+}
+.btn--solid { background: var(--lima); }
+.btn--solid:hover { background: var(--branco); }
+.btn--ghost { border-color: var(--preto); }
+.btn--ghost:hover { background: var(--preto); color: var(--branco); }
+.btn--sm { min-height: 40px; padding: 8px 20px; font-size: 15px; }
+.actions { display: flex; flex-wrap: wrap; gap: 18px; margin-top: 40px; }
+
+/* ---------- Header ---------- */
+.site-header {
+  position: fixed; inset: 0 0 auto; z-index: 50;
+  background: var(--preto);
+  border-bottom: 1px solid var(--fio);
+  transition: background-color .3s var(--ease), border-color .3s var(--ease);
+}
+/* com JS, o header fica transparente sobre o hero e escurece ao rolar (sem JS ele já nasce escuro) */
+.js .site-header:not(.is-scrolled) { background: transparent; border-bottom-color: transparent; }
+.header-inner { display: flex; align-items: center; gap: 32px; height: 64px; }
+.logo { display: inline-flex; align-items: center; gap: 12px; text-decoration: none; }
+.logo img { width: auto; height: 34px; }
+.logo-word { font-weight: 700; font-size: 18px; line-height: 1; letter-spacing: -.01em; white-space: nowrap; color: var(--lima); }
+.nav { display: none; }
+.header-inner > .btn { margin-left: auto; }
+
+/* os 5 links cabem a partir de 1024px; abaixo disso entra o menu flutuante */
+@media (min-width: 1024px) {
+  .header-inner { height: 72px; }
+  .nav { display: flex; gap: 28px; margin-inline: auto; }
+  .nav a { font-size: 15px; line-height: 1; text-decoration: none; color: rgba(255,255,255,.82); transition: color .2s; }
+  .nav a:hover { color: var(--branco); text-decoration: underline; text-underline-offset: 6px; }
+  .header-inner > .btn { margin-left: 0; }
+}
+
+/* ---------- Início ---------- */
+/* faixa de ponta a ponta; logo e frase na base, abaixo do rosto. No celular, 70% da altura da tela */
+.hero {
+  position: relative; isolation: isolate; overflow: hidden;
+  min-height: max(70svh, 440px); /* em celular baixo a faixa não encolhe a ponto de o logo subir no rosto */
+  display: grid; place-items: end center;
+  padding-block: 96px clamp(32px, 3vw, 48px);
+  text-align: center;
+  background: var(--preto);
+}
+/* com a tela deitada a faixa tem a proporção da foto (1672×941), então ela aparece inteira */
+@media (orientation: landscape) and (min-width: 900px) { .hero { min-height: auto; aspect-ratio: 1672 / 941; } }
+/* no celular o recorte fica no rosto do Thomás (52% da largura da foto) */
+.hero-media { position: absolute; inset: 0; z-index: -2; width: 100%; height: 100%; object-fit: cover; object-position: 52% 30%; }
+.hero::after {
+  content: ""; position: absolute; inset: 0; z-index: -1;
+  background: linear-gradient(to bottom, rgba(0,0,0,.5) 0%, rgba(0,0,0,.25) 40%, rgba(0,0,0,.9) 100%);
+}
+.hero-logo { width: auto; height: min(clamp(64px, 10vw, 132px), 14svh); margin: 0 auto clamp(20px, 2vw, 28px); }
+.hero-title { max-width: 24ch; margin-inline: auto; font-weight: 300; font-size: clamp(24px, 3.4vw, 46px); line-height: 1.15; text-wrap: balance; text-shadow: 0 4px 32px rgba(0,0,0,.5); }
+
+/* ---------- História: foto encostada na borda + texto ---------- */
+/* no celular a foto vai de ponta a ponta; no computador encosta na borda esquerda e o texto fica alinhado à grade */
+.story { display: grid; gap: 40px; align-items: center; }
+.story-media img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; object-position: 50% 20%; }
+.story-body { padding-inline: var(--gutter); max-width: 640px; }
+.story-body .lead + p { margin-top: 18px; max-width: 46ch; }
+@media (min-width: 900px) {
+  .story {
+    grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+    gap: clamp(48px, 6vw, 104px);
+    padding-right: max(var(--gutter), calc((100% - var(--w)) / 2));
+  }
+  .story-body { padding-inline: 0; }
+}
+
+/* ---------- Cabeçalho em duas colunas (título à esquerda, texto embaixo à direita) ---------- */
+.head-split { display: grid; gap: 8px; margin-bottom: clamp(48px, 6vw, 88px); }
+@media (min-width: 900px) {
+  .head-split { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: 64px; align-items: end; }
+  .head-split .h2 { margin-bottom: 0; }
+  .head-split .lead { padding-bottom: 6px; }
+}
+
+/* ---------- Como funciona: título fixo à esquerda e os passos à direita ---------- */
+.how { display: grid; gap: 48px; }
+@media (min-width: 900px) {
+  .how { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 64px; align-items: start; }
+  .how-head { position: sticky; top: 120px; }
+}
+.steps { counter-reset: passo; border-top: 1px solid var(--fio); }
+.steps li {
+  counter-increment: passo;
+  display: grid; grid-template-columns: clamp(52px, 7vw, 96px) minmax(0, 1fr); gap: 16px;
+  padding-block: clamp(28px, 3.4vw, 44px);
+  border-bottom: 1px solid var(--fio);
+}
+/* número grande em verde: aqui a numeração é passo a passo de verdade */
+.steps li::before { content: counter(passo); font-weight: 700; font-size: clamp(40px, 5vw, 72px); line-height: .9; color: var(--lima); }
+.steps h3 { margin-bottom: 8px; font-weight: 700; font-size: clamp(20px, 2vw, 26px); line-height: 1.2; letter-spacing: -.01em; color: var(--branco); }
+.steps p { max-width: 44ch; }
+
+/* ---------- Faixa do slogan ---------- */
+.slogan { padding-block: clamp(72px, 9vw, 144px); background: var(--lima); }
+.slogan-text { max-width: 18ch; font-weight: 300; font-size: clamp(34px, 6.6vw, 104px); line-height: 1.04; letter-spacing: -.03em; color: var(--preto); text-wrap: balance; }
+.slogan :focus-visible { outline-color: var(--preto); }
+
+/* ---------- Serviços e contato (sem preço, pedido do cliente) ---------- */
+.booking { display: grid; gap: 56px; }
+@media (min-width: 900px) { .booking { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: 64px; align-items: start; } }
+.phone { margin-bottom: 20px; font-weight: 700; font-size: clamp(26px, 5.6vw, 72px); line-height: 1; white-space: nowrap; font-variant-numeric: tabular-nums; }
+.booking-text { margin-bottom: 28px; font-size: 17px; color: var(--branco); }
+.hours { margin: 0 0 24px; border-top: 1px solid var(--fio); }
+.hours div { display: flex; justify-content: space-between; align-items: center; gap: 16px; min-height: 54px; border-bottom: 1px solid var(--fio); }
+.hours dt { color: var(--branco); }
+.hours dd { margin: 0; white-space: nowrap; font-variant-numeric: tabular-nums; }
+
+/* ---------- Avaliações ---------- */
+/* cards em colunas que sobem devagar em loop (o JS repete os cards) */
+.reviews-head { margin-bottom: 56px; }
+
+.reviews { display: grid; gap: 24px; }
+@media (min-width: 720px) { .reviews { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (min-width: 1100px) { .reviews { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+.reviews-track { display: grid; gap: 24px; align-content: start; }
+
+.review { margin: 0; padding: 28px; background: var(--branco-2); }
+.review blockquote { margin: 0; }
+.review blockquote p { font-size: 15px; line-height: 1.65; color: var(--preto); }
+.review blockquote p + p { margin-top: 10px; }
+.review figcaption { display: flex; align-items: center; gap: 12px; margin-top: 24px; }
+.review figcaption > span:last-child { display: flex; flex-direction: column; gap: 2px; }
+.review-avatar {
+  display: grid; place-items: center; flex: none;
+  width: 40px; height: 40px;
+  background: var(--lima); color: var(--preto);
+  font-weight: 700; font-size: 14px;
+}
+.review-name { font-weight: 700; font-size: 14px; line-height: 1.3; color: var(--preto); }
+.review-meta { font-size: 13px; line-height: 1.3; color: var(--cinza); }
+
+.reviews-actions { align-items: center; }
+.pause-motion {
+  display: none; padding: 8px 0; border: 0; background: none; cursor: pointer;
+  font: 700 15px/1 var(--font);
+  color: var(--cinza); text-decoration: underline; text-underline-offset: 6px;
+}
+.pause-motion:hover { color: var(--preto); }
+@media (prefers-reduced-motion: no-preference) {
+  .js .reviews {
+    display: flex; justify-content: center; gap: 24px;
+    max-height: 640px; overflow: hidden;
+    -webkit-mask-image: linear-gradient(to bottom, transparent, #000 18%, #000 82%, transparent);
+    mask-image: linear-gradient(to bottom, transparent, #000 18%, #000 82%, transparent);
+  }
+  .js .reviews-col { flex: 1; min-width: 0; }
+  .js .reviews-col:nth-child(n+2) { display: none; }
+  .js .reviews-track { padding-bottom: 24px; animation: reviews-up var(--dur, 40s) linear infinite; }
+  .js .reviews:hover .reviews-track { animation-play-state: paused; }
+  .js .pause-motion { display: inline-block; }
+  .motion-paused .reviews-track { animation-play-state: paused !important; }
+}
+@media (prefers-reduced-motion: no-preference) and (min-width: 720px) { .js .reviews-col:nth-child(2) { display: block; } }
+@media (prefers-reduced-motion: no-preference) and (min-width: 1100px) { .js .reviews-col:nth-child(3) { display: block; } }
+@keyframes reviews-up { to { transform: translateY(-50%); } }
+
+/* ---------- Rodapé ---------- */
+/* o espaço embaixo é para os botões flutuantes não cobrirem o texto */
+.site-footer { padding: 72px 0 104px; font-size: 15px; line-height: 1.75; }
+.footer-grid { display: grid; gap: 40px; }
+@media (min-width: 720px) { .footer-grid { grid-template-columns: 1fr 1fr; } }
+@media (min-width: 1100px) { .footer-grid { grid-template-columns: 2fr 1fr 1fr; } }
+.site-footer .label { margin-bottom: 12px; color: var(--branco); }
+.footer-logo { width: auto; height: 72px; }
+.site-footer a { text-decoration: underline; text-decoration-color: rgba(255,255,255,.3); text-underline-offset: 4px; transition: color .2s, text-decoration-color .2s; }
+.site-footer a:hover { color: var(--branco); text-decoration-color: currentColor; }
+.footer-bottom {
+  display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 24px;
+  position: relative;
+  margin-top: 64px; padding-top: 24px;
+  font-size: 14px; line-height: 1.5; color: var(--texto-fraco);
+}
+/* o fio acompanha a largura do conteúdo, e não a da caixa com o gutter */
+.footer-bottom::before { content: ""; position: absolute; top: 0; left: var(--gutter); right: var(--gutter); border-top: 1px solid var(--fio); }
+
+/* ---------- WhatsApp flutuante ---------- */
+.wa-float {
+  position: fixed; right: 24px; bottom: 24px; z-index: 40;
+  display: grid; place-items: center;
+  width: 56px; height: 56px;
+  background: var(--lima); color: var(--preto);
+  transition: background-color .3s var(--ease), opacity .3s var(--ease), visibility .3s;
+}
+.wa-float:hover { background: var(--branco); }
+/* o WhatsApp flutuante fica sempre na tela (pedido do usuário); só o botão de menu espera a rolagem */
+.js .site-header:not(.is-scrolled) ~ .menu-btn { opacity: 0; visibility: hidden; }
+
+/* ---------- Menu flutuante (abaixo de 1024px, onde o menu do header some) ---------- */
+.menu-btn { display: none; }
+.menu-btn .icon-close { display: none; }
+.menu-btn[aria-expanded="true"] .icon-open { display: none; }
+.menu-btn[aria-expanded="true"] .icon-close { display: block; }
+@media (max-width: 1023px) {
+  .js .menu-btn {
+    position: fixed; right: 92px; bottom: 24px; z-index: 60;
+    display: grid; place-items: center;
+    width: 56px; height: 56px; padding: 0; cursor: pointer;
+    background: var(--preto-2); color: var(--branco);
+    border: 1px solid rgba(255,255,255,.25);
+    transition: opacity .3s var(--ease), visibility .3s;
+  }
+  .wa-float { z-index: 60; } /* continua visível com o menu aberto */
+}
+.menu-panel {
+  position: fixed; inset: 0; z-index: 55; overflow-y: auto;
+  padding: 88px var(--gutter) 120px;
+  background: var(--preto);
+}
+.menu-panel[hidden] { display: none; }
+.menu-panel ul { border-top: 1px solid var(--fio); }
+.menu-panel a { display: block; padding: 12px 0; border-bottom: 1px solid var(--fio); font-weight: 700; font-size: 32px; line-height: 1.25; text-decoration: none; }
+.menu-open { overflow: hidden; }
+@media (min-width: 1024px) { .menu-panel { display: none !important; } }
+
+/* ---------- Telas estreitas ---------- */
+@media (max-width: 479px) {
+  .logo-word { display: none; } /* o nome completo aparece logo abaixo, no hero */
+  .btn:not(.btn--sm) { width: 100%; }
+}
+
+/* ---------- Movimento (só para quem não pediu menos movimento) ---------- */
+@media (prefers-reduced-motion: no-preference) {
+  .js .reveal {
+    opacity: 0; transform: translateY(24px);
+    transition: opacity .7s var(--ease), transform .7s var(--ease);
+    transition-delay: var(--d, 0s);
+  }
+  .js .reveal.is-in { opacity: 1; transform: none; }
+
+  /* entrada do início: a foto se ajusta devagar e o logo e a frase sobem suaves */
+  .hero-media { animation: hero-zoom 6s var(--ease) both; }
+  .hero-logo { animation: hero-in .9s var(--ease) .15s both; }
+  .hero-title { animation: hero-in .9s var(--ease) .35s both; }
+  .menu-panel:not([hidden]) { animation: menu-in .25s var(--ease); }
+}
+@keyframes hero-zoom { from { transform: scale(1.08); } }
+@keyframes hero-in { from { opacity: 0; transform: translateY(16px); } }
+@keyframes menu-in { from { opacity: 0; transform: translateY(8px); } }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }

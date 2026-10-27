@@ -1,0 +1,19 @@
+# No repositório fica só o que o site usa: index.html, style.css, main.js e img/.
+# Tudo abaixo fica só no computador.
+
+# anotações internas do projeto
+CLAUDE.md
+memoria.md
+specs/
+
+# material do cliente e de referência
+identidade_visual_thomas_barbosa.pdf
+referencias/
+# originais das fotos reais (pesados); as versões do site ficam em img/
+fotos/
+
+# configuração local
+.claude/
+.vercel/
+.env
+.env.*
