@@ -93,6 +93,8 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 .btn--ghost { border-color: var(--preto); }
 .btn--ghost:hover { background: var(--preto); color: var(--branco); }
 .btn--sm { min-height: 40px; padding: 8px 20px; font-size: 15px; }
+.btn--wa { gap: 8px; white-space: nowrap; }
+.btn--wa svg { flex: none; }
 .actions { display: flex; flex-wrap: wrap; gap: 18px; margin-top: 40px; }
 
 /* ---------- Header ---------- */
@@ -258,16 +260,7 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 /* o fio acompanha a largura do conteúdo, e não a da caixa com o gutter */
 .footer-bottom::before { content: ""; position: absolute; top: 0; left: var(--gutter); right: var(--gutter); border-top: 1px solid var(--fio); }
 
-/* ---------- WhatsApp flutuante ---------- */
-.wa-float {
-  position: fixed; right: 24px; bottom: 24px; z-index: 40;
-  display: grid; place-items: center;
-  width: 56px; height: 56px;
-  background: var(--lima); color: var(--preto);
-  transition: background-color .3s var(--ease), opacity .3s var(--ease), visibility .3s;
-}
-.wa-float:hover { background: var(--branco); }
-/* o WhatsApp flutuante fica sempre na tela (pedido do usuário); só o botão de menu espera a rolagem */
+/* o WhatsApp fica no topo fixo; o botão de menu só aparece depois de rolar o hero */
 .js .site-header:not(.is-scrolled) ~ .menu-btn { opacity: 0; visibility: hidden; }
 
 /* ---------- Menu flutuante (abaixo de 1024px, onde o menu do header some) ---------- */
@@ -277,14 +270,13 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 .menu-btn[aria-expanded="true"] .icon-close { display: block; }
 @media (max-width: 1023px) {
   .js .menu-btn {
-    position: fixed; right: 92px; bottom: 24px; z-index: 60;
+    position: fixed; right: 24px; bottom: 24px; z-index: 60;
     display: grid; place-items: center;
     width: 56px; height: 56px; padding: 0; cursor: pointer;
     background: var(--preto-2); color: var(--branco);
     border: 1px solid rgba(255,255,255,.25);
     transition: opacity .3s var(--ease), visibility .3s;
   }
-  .wa-float { z-index: 60; } /* continua visível com o menu aberto */
 }
 .menu-panel {
   position: fixed; inset: 0; z-index: 55; overflow-y: auto;
