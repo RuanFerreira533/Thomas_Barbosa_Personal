@@ -156,14 +156,6 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
   .story-body { padding-inline: 0; }
 }
 
-/* ---------- Cabeçalho em duas colunas (título à esquerda, texto embaixo à direita) ---------- */
-.head-split { display: grid; gap: 8px; margin-bottom: clamp(48px, 6vw, 88px); }
-@media (min-width: 900px) {
-  .head-split { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: 64px; align-items: end; }
-  .head-split .h2 { margin-bottom: 0; }
-  .head-split .lead { padding-bottom: 6px; }
-}
-
 /* ---------- Como funciona: título fixo à esquerda e os passos à direita ---------- */
 .how { display: grid; gap: 48px; }
 @media (min-width: 900px) {
@@ -188,14 +180,15 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 .slogan :focus-visible { outline-color: var(--preto); }
 
 /* ---------- Serviços e contato (sem preço, pedido do cliente) ---------- */
-.booking { display: grid; gap: 56px; }
-@media (min-width: 900px) { .booking { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: 64px; align-items: start; } }
-.phone { margin-bottom: 20px; font-weight: 700; font-size: clamp(26px, 5.6vw, 72px); line-height: 1; white-space: nowrap; font-variant-numeric: tabular-nums; }
-.booking-text { margin-bottom: 28px; font-size: 17px; color: var(--branco); }
-.hours { margin: 0 0 24px; border-top: 1px solid var(--fio); }
-.hours div { display: flex; justify-content: space-between; align-items: center; gap: 16px; min-height: 54px; border-bottom: 1px solid var(--fio); }
-.hours dt { color: var(--branco); }
-.hours dd { margin: 0; white-space: nowrap; font-variant-numeric: tabular-nums; }
+/* título à esquerda e o WhatsApp à direita, alinhados pela base */
+.contact { display: grid; gap: 40px; }
+.phone { margin-bottom: 20px; font-weight: 700; font-size: clamp(26px, 6vw, 56px); line-height: 1; white-space: nowrap; font-variant-numeric: tabular-nums; }
+.contact-text { max-width: 36ch; margin-bottom: 28px; font-size: 17px; color: var(--branco); }
+@media (min-width: 900px) {
+  .contact { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 64px; align-items: end; }
+  .contact .h2 { margin-bottom: 0; }
+  .contact .phone { font-size: clamp(32px, 3.8vw, 56px); } /* meia largura: o número inteiro cabe na coluna */
+}
 
 /* ---------- Avaliações ---------- */
 /* cards em colunas que sobem devagar em loop (o JS repete os cards) */
