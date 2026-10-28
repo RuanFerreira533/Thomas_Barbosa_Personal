@@ -1,6 +1,7 @@
-/* Thomás Barbosa, personal trainer.
-   Mesma base editorial da Charme, com a marca do Thomás: preto, branco e verde-limão,
-   uma família só (Poppins) misturando Light e Bold nos títulos, fotos em preto e branco. */
+/* Thomás Barbosa, redesenho "pôster de academia".
+   Composição própria, tirada do manual da marca: as formas do logo (o triângulo do T e o quarto de círculo do B)
+   recortam as fotos, o verde entra em blocos grandes e "hipertrofia" vira um verbete de dicionário.
+   Uma família só (Poppins), misturando Light e Bold nos títulos, como no slogan. Fotos em preto e branco. */
 
 :root {
   --preto: #000000;
@@ -18,13 +19,15 @@
 
   --w: 1280px;
   --gutter: clamp(24px, 4vw, 56px);
-  --rhythm: clamp(88px, 11vw, 160px);
+  --rhythm: clamp(80px, 10vw, 152px);
+  --header: 64px;
   --ease: cubic-bezier(.22, 1, .36, 1);
 }
+@media (min-width: 1024px) { :root { --header: 72px; } }
 
 /* ---------- Base ---------- */
 *, *::before, *::after { box-sizing: border-box; }
-html { scroll-behavior: smooth; scroll-padding-top: 72px; -webkit-text-size-adjust: 100%; }
+html { scroll-behavior: smooth; scroll-padding-top: var(--header); -webkit-text-size-adjust: 100%; }
 body {
   margin: 0;
   background: var(--preto);
@@ -40,12 +43,7 @@ h1, h2, h3 { margin: 0; font-weight: inherit; }
 ul, ol { margin: 0; padding: 0; list-style: none; }
 
 :focus-visible { outline: 2px solid var(--branco); outline-offset: 3px; }
-.section--light :focus-visible { outline-color: var(--preto); }
-
-.sr-only {
-  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
-  overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
-}
+.section--light :focus-visible, .contact :focus-visible { outline-color: var(--preto); }
 
 .skip {
   position: absolute; left: 16px; top: -100px; z-index: 100;
@@ -58,25 +56,19 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 .section { padding-block: var(--rhythm); }
 
 /* ---------- Tipografia ---------- */
-/* títulos em caixa normal misturando Light e Bold, como o slogan do manual */
-.hero-title, .h2, .phone, .price-board tbody th, .price-board td, .menu-panel a, .slogan-text {
-  font-family: var(--font);
-  letter-spacing: -.02em;
-  color: var(--branco);
-}
-.h2 { margin-bottom: 28px; font-weight: 300; font-size: clamp(32px, 5vw, 60px); line-height: 1.08; text-wrap: balance; }
-.h2 strong, .hero-title strong, .slogan-text strong { font-weight: 700; }
-/* sobre o preto, a parte em Bold vai em verde (16,9:1); sobre o claro, fica preta */
-.section:not(.section--light) .h2 strong, .hero-title strong { color: var(--lima); }
+/* títulos em caixa normal misturando Light e Bold; sobre o preto o Bold vai em verde (16,9:1) */
+.h2 { margin-bottom: 28px; font-weight: 300; font-size: clamp(32px, 5vw, 60px); line-height: 1.08; letter-spacing: -.02em; color: var(--branco); text-wrap: balance; }
+.h2 strong, .hero-title strong, .contact-title strong { font-weight: 700; }
+.h2 strong, .hero-title strong { color: var(--lima); }
 .lead { font-size: clamp(17px, 1.4vw, 20px); line-height: 1.55; color: var(--branco); max-width: 40ch; }
-
-/* rótulo de seção: texto curto em caixa normal, sem fio nem espaçamento largo */
 .label { margin-bottom: 18px; font-weight: 700; font-size: 15px; line-height: 1.3; color: var(--lima); }
+.pendente { color: var(--texto-fraco); }
 
 /* ---------- Seções claras ---------- */
 .section--light { background: var(--branco); color: var(--cinza); }
 .section--light .h2, .section--light .lead { color: var(--preto); }
-.section--light .label { color: var(--cinza); } /* o verde nunca é texto sobre o branco (1,24:1) */
+.section--light .h2 strong { color: var(--preto); } /* o verde nunca é texto sobre o branco (1,24:1) */
+.section--light .label { color: var(--cinza); }
 
 /* ---------- Botões ---------- */
 .btn {
@@ -92,163 +84,164 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 .btn--solid:hover { background: var(--branco); }
 .btn--ghost { border-color: var(--preto); }
 .btn--ghost:hover { background: var(--preto); color: var(--branco); }
-.btn--sm { min-height: 40px; padding: 8px 20px; font-size: 15px; }
+.btn--sm { min-height: 40px; padding: 8px 18px; font-size: 15px; }
 .btn--wa { gap: 8px; white-space: nowrap; }
 .btn--wa svg { flex: none; }
 .actions { display: flex; flex-wrap: wrap; gap: 18px; margin-top: 40px; }
 
-/* ---------- Header ---------- */
-.site-header {
-  position: fixed; inset: 0 0 auto; z-index: 50;
-  background: var(--preto);
-  border-bottom: 1px solid var(--fio);
-  transition: background-color .3s var(--ease), border-color .3s var(--ease);
-}
-/* com JS, o header fica transparente sobre o hero e escurece ao rolar (sem JS ele já nasce escuro) */
-.js .site-header:not(.is-scrolled) { background: transparent; border-bottom-color: transparent; }
-.header-inner { display: flex; align-items: center; gap: 32px; height: 64px; }
-.logo { display: inline-flex; align-items: center; gap: 12px; text-decoration: none; }
+/* ---------- Topo ---------- */
+/* sempre preto e grudado no alto; no celular o botão de menu fica dentro dele, ao lado do WhatsApp */
+.site-header { position: sticky; top: 0; z-index: 60; background: var(--preto); border-bottom: 1px solid var(--fio); }
+.header-inner { display: flex; align-items: center; gap: 10px; height: var(--header); }
+.logo { display: inline-flex; align-items: center; gap: 12px; margin-right: auto; text-decoration: none; }
 .logo img { width: auto; height: 34px; }
 .logo-word { font-weight: 700; font-size: 18px; line-height: 1; letter-spacing: -.01em; white-space: nowrap; color: var(--lima); }
 .nav { display: none; }
-.header-inner > .btn { margin-left: auto; }
-
-/* os 5 links cabem a partir de 1024px; abaixo disso entra o menu flutuante */
+.menu-btn { display: none; }
+.menu-btn .icon-close { display: none; }
+.menu-btn[aria-expanded="true"] .icon-open { display: none; }
+.menu-btn[aria-expanded="true"] .icon-close { display: block; }
+.js .menu-btn {
+  display: grid; place-items: center; flex: none;
+  width: 40px; height: 40px; padding: 0; cursor: pointer;
+  background: transparent; color: var(--branco);
+  border: 1px solid rgba(255,255,255,.3);
+}
 @media (min-width: 1024px) {
-  .header-inner { height: 72px; }
-  .nav { display: flex; gap: 28px; margin-inline: auto; }
+  .header-inner { gap: 32px; }
+  .nav { display: flex; gap: 26px; }
   .nav a { font-size: 15px; line-height: 1; text-decoration: none; color: rgba(255,255,255,.82); transition: color .2s; }
   .nav a:hover { color: var(--branco); text-decoration: underline; text-underline-offset: 6px; }
-  .header-inner > .btn { margin-left: 0; }
+  .js .menu-btn { display: none; }
 }
 
-/* ---------- Início ---------- */
-/* faixa de ponta a ponta; logo e frase na base, abaixo do rosto. No celular, 70% da altura da tela */
-.hero {
-  position: relative; isolation: isolate; overflow: hidden;
-  min-height: max(70svh, 440px); /* em celular baixo a faixa não encolhe a ponto de o logo subir no rosto */
-  display: grid; place-items: end center;
-  padding-block: 96px clamp(32px, 3vw, 48px);
-  text-align: center;
+/* menu do celular: abre embaixo do topo, e o X do próprio topo fecha */
+.menu-panel {
+  position: fixed; inset: var(--header) 0 0; z-index: 55; overflow-y: auto;
+  padding: 24px var(--gutter) 64px;
   background: var(--preto);
 }
-/* com a tela deitada a faixa tem a proporção da foto (1672×941), então ela aparece inteira */
-@media (orientation: landscape) and (min-width: 900px) { .hero { min-height: auto; aspect-ratio: 1672 / 941; } }
+.menu-panel[hidden] { display: none; }
+.menu-panel ul { border-top: 1px solid var(--fio); }
+.menu-panel a { display: block; padding: 12px 0; border-bottom: 1px solid var(--fio); font-weight: 700; font-size: 32px; line-height: 1.25; letter-spacing: -.02em; text-decoration: none; color: var(--branco); }
+.menu-open { overflow: hidden; }
+@media (min-width: 1024px) { .menu-panel { display: none !important; } }
+
+/* ---------- Início: pôster ---------- */
+/* o slogan grande de um lado e a foto do outro, encostada na borda direita.
+   A foto ganha o quarto de círculo do B no canto e o triângulo verde do T por cima. */
+.hero { display: grid; background: var(--preto); }
+.hero-text { padding: clamp(40px, 7vw, 96px) var(--gutter) 48px; }
+.hero-title { font-weight: 300; font-size: clamp(36px, 5.4vw, 84px); line-height: 1.04; letter-spacing: -.03em; color: var(--branco); text-wrap: balance; }
+.hero-sub { max-width: 38ch; margin-top: 28px; font-size: clamp(17px, 1.4vw, 20px); line-height: 1.55; }
+.hero-photo { position: relative; overflow: hidden; aspect-ratio: 4 / 5; } /* o zoom de entrada não vaza para o lado */
 /* no celular o recorte fica no rosto do Thomás (52% da largura da foto) */
-.hero-media { position: absolute; inset: 0; z-index: -2; width: 100%; height: 100%; object-fit: cover; object-position: 52% 30%; }
-.hero::after {
-  content: ""; position: absolute; inset: 0; z-index: -1;
-  background: linear-gradient(to bottom, rgba(0,0,0,.5) 0%, rgba(0,0,0,.25) 40%, rgba(0,0,0,.9) 100%);
+.hero-photo img { width: 100%; height: 100%; object-fit: cover; object-position: 52% 30%; border-top-left-radius: 40vw; }
+.shape-tri {
+  position: absolute; left: 0; bottom: 0;
+  width: clamp(72px, 11vw, 160px); aspect-ratio: 1;
+  background: var(--lima);
+  clip-path: polygon(0 0, 100% 100%, 0 100%);
 }
-.hero-logo { width: auto; height: min(clamp(64px, 10vw, 132px), 14svh); margin: 0 auto clamp(20px, 2vw, 28px); }
-.hero-title { max-width: 24ch; margin-inline: auto; font-weight: 300; font-size: clamp(24px, 3.4vw, 46px); line-height: 1.15; text-wrap: balance; text-shadow: 0 4px 32px rgba(0,0,0,.5); }
-
-/* ---------- História: foto encostada na borda + texto ---------- */
-/* no celular a foto vai de ponta a ponta; no computador encosta na borda esquerda e o texto fica alinhado à grade */
-.story { display: grid; gap: 40px; align-items: center; }
-.story-media img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; object-position: 50% 20%; }
-.story-body { padding-inline: var(--gutter); max-width: 640px; }
-.story-body .lead + p { margin-top: 18px; max-width: 46ch; }
 @media (min-width: 900px) {
-  .story {
-    grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
-    gap: clamp(48px, 6vw, 104px);
-    padding-right: max(var(--gutter), calc((100% - var(--w)) / 2));
+  .hero {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    min-height: clamp(560px, calc(100svh - var(--header)), 900px);
+    padding-left: max(var(--gutter), calc((100% - var(--w)) / 2));
   }
-  .story-body { padding-inline: 0; }
+  .hero-text { align-self: center; padding: 64px clamp(32px, 4vw, 64px) 64px 0; }
+  .hero-photo { aspect-ratio: auto; }
+  .hero-photo img { position: absolute; inset: 0; border-top-left-radius: clamp(160px, 18vw, 320px); }
 }
 
-/* ---------- Como funciona: título fixo à esquerda e os passos à direita ---------- */
-.how { display: grid; gap: 48px; }
-@media (min-width: 900px) {
-  .how { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 64px; align-items: start; }
-  .how-head { position: sticky; top: 120px; }
-}
-.steps { counter-reset: passo; border-top: 1px solid var(--fio); }
-.steps li {
-  counter-increment: passo;
-  display: grid; grid-template-columns: clamp(52px, 7vw, 96px) minmax(0, 1fr); gap: 16px;
-  padding-block: clamp(28px, 3.4vw, 44px);
-  border-bottom: 1px solid var(--fio);
-}
-/* número grande em verde: aqui a numeração é passo a passo de verdade */
-.steps li::before { content: counter(passo); font-weight: 700; font-size: clamp(40px, 5vw, 72px); line-height: .9; color: var(--lima); }
-.steps h3 { margin-bottom: 8px; font-weight: 700; font-size: clamp(20px, 2vw, 26px); line-height: 1.2; letter-spacing: -.01em; color: var(--branco); }
-.steps p { max-width: 44ch; }
+/* ---------- História ---------- */
+/* a foto ganha o canto cortado em diagonal (a ponta da seta do T); o "30 kg" é o título */
+.story { display: grid; gap: 48px; align-items: center; }
+.story-photo img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; object-position: 50% 20%; clip-path: polygon(0 0, 72% 0, 100% 28%, 100% 100%, 0 100%); }
+.story-title { margin-bottom: 28px; font-weight: 300; font-size: clamp(26px, 3vw, 44px); line-height: 1.15; letter-spacing: -.02em; color: var(--preto); }
+.stat { display: block; margin-bottom: .16em; font-weight: 700; font-size: clamp(88px, 14vw, 200px); line-height: .85; letter-spacing: -.05em; } /* espaço para a perna do "g" */
+.story-text .lead + p { margin-top: 18px; max-width: 46ch; }
+@media (max-width: 899px) { .story-photo { order: 1; } } /* no celular o texto vem antes da foto */
+@media (min-width: 900px) { .story { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: clamp(48px, 6vw, 104px); } }
 
-/* ---------- Faixa do slogan ---------- */
-.slogan { padding-block: clamp(72px, 9vw, 144px); background: var(--lima); }
-.slogan-text { max-width: 18ch; font-weight: 300; font-size: clamp(34px, 6.6vw, 104px); line-height: 1.04; letter-spacing: -.03em; color: var(--preto); text-wrap: balance; }
-.slogan :focus-visible { outline-color: var(--preto); }
-
-/* ---------- Serviços e contato (sem preço, pedido do cliente) ---------- */
-/* título à esquerda e o WhatsApp à direita, alinhados pela base */
-.contact { display: grid; gap: 40px; }
-.phone { margin-bottom: 20px; font-weight: 700; font-size: clamp(26px, 6vw, 56px); line-height: 1; white-space: nowrap; font-variant-numeric: tabular-nums; }
-.contact-text { max-width: 36ch; margin-bottom: 28px; font-size: 17px; color: var(--branco); }
-@media (min-width: 900px) {
-  .contact { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 64px; align-items: end; }
-  .contact .h2 { margin-bottom: 0; }
-  .contact .phone { font-size: clamp(32px, 3.8vw, 56px); } /* meia largura: o número inteiro cabe na coluna */
-}
+/* ---------- Como funciona: dois cartões ---------- */
+.modes { display: grid; grid-template-columns: minmax(0, 1fr); gap: 24px; margin-top: clamp(40px, 5vw, 64px); }
+@media (min-width: 900px) { .modes { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.mode { --pad: clamp(28px, 3.4vw, 48px); --circ: clamp(56px, 6vw, 88px); position: relative; padding: var(--pad); border: 1px solid var(--fio); }
+/* quarto de círculo verde no canto, a forma do B */
+.mode::after { content: ""; position: absolute; top: 0; right: 0; width: var(--circ); aspect-ratio: 1; background: var(--lima); border-bottom-left-radius: 100%; }
+/* o título só desvia do pedaço do círculo que entra no conteúdo */
+.mode h3 { margin-bottom: 12px; padding-right: calc(var(--circ) - var(--pad) + 12px); font-weight: 700; font-size: clamp(30px, 4vw, 56px); line-height: 1; letter-spacing: -.03em; color: var(--branco); }
+.mode-sum { margin-bottom: 28px; font-size: 17px; color: var(--branco); }
+.mode-list { margin: 0; border-top: 1px solid var(--fio); }
+/* em tela estreita a resposta desce para a linha de baixo em vez de estourar o cartão */
+.mode-list div { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 4px 16px; padding-block: 14px; border-bottom: 1px solid var(--fio); }
+.mode-list dt { color: var(--branco); }
+.mode-list dd { margin: 0 0 0 auto; text-align: right; }
 
 /* ---------- Avaliações ---------- */
-/* cards em colunas que sobem devagar em loop (o JS repete os cards) */
-.reviews-head { margin-bottom: 56px; }
+.quote-hero { display: grid; gap: 24px; margin: clamp(32px, 4vw, 56px) 0 clamp(48px, 6vw, 80px); }
+@media (min-width: 900px) { .quote-hero { grid-template-columns: auto minmax(0, 1fr); gap: 40px; } }
+/* selo verde com as aspas em preto (o verde no claro só como bloco com texto preto) */
+.quote-mark { display: grid; place-items: center; width: clamp(56px, 6vw, 88px); aspect-ratio: 1; background: var(--lima); color: var(--preto); font-weight: 700; font-size: clamp(56px, 6vw, 88px); line-height: 1; padding-top: .3em; }
+.quote-hero blockquote { margin: 0; }
+.quote-hero blockquote p { max-width: 32ch; font-weight: 300; font-size: clamp(22px, 2.8vw, 40px); line-height: 1.3; letter-spacing: -.01em; color: var(--preto); }
+.quote-hero blockquote p + p { margin-top: .5em; }
+.quote-hero figcaption { display: flex; flex-wrap: wrap; align-items: baseline; gap: 10px; margin-top: 24px; }
 
-.reviews { display: grid; gap: 24px; }
-@media (min-width: 720px) { .reviews { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
-@media (min-width: 1100px) { .reviews { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
-.reviews-track { display: grid; gap: 24px; align-content: start; }
-
+.quotes { display: grid; gap: 16px; }
+@media (min-width: 720px) { .quotes { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 .review { margin: 0; padding: 28px; background: var(--branco-2); }
 .review blockquote { margin: 0; }
 .review blockquote p { font-size: 15px; line-height: 1.65; color: var(--preto); }
-.review blockquote p + p { margin-top: 10px; }
 .review figcaption { display: flex; align-items: center; gap: 12px; margin-top: 24px; }
 .review figcaption > span:last-child { display: flex; flex-direction: column; gap: 2px; }
-.review-avatar {
-  display: grid; place-items: center; flex: none;
-  width: 40px; height: 40px;
-  background: var(--lima); color: var(--preto);
-  font-weight: 700; font-size: 14px;
-}
+.review-avatar { display: grid; place-items: center; flex: none; width: 40px; height: 40px; background: var(--lima); color: var(--preto); font-weight: 700; font-size: 14px; }
 .review-name { font-weight: 700; font-size: 14px; line-height: 1.3; color: var(--preto); }
 .review-meta { font-size: 13px; line-height: 1.3; color: var(--cinza); }
 
-.reviews-actions { align-items: center; }
-.pause-motion {
-  display: none; padding: 8px 0; border: 0; background: none; cursor: pointer;
-  font: 700 15px/1 var(--font);
-  color: var(--cinza); text-decoration: underline; text-underline-offset: 6px;
+/* ---------- Perguntas ---------- */
+.faq-grid { display: grid; gap: 40px; }
+@media (min-width: 900px) { .faq-grid { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 64px; align-items: start; } }
+.faq { border-top: 1px solid var(--fio); }
+.faq details { border-bottom: 1px solid var(--fio); }
+.faq summary {
+  display: flex; justify-content: space-between; align-items: center; gap: 24px;
+  padding-block: 24px; cursor: pointer; list-style: none;
+  font-weight: 700; font-size: clamp(18px, 1.8vw, 24px); line-height: 1.3; color: var(--branco);
 }
-.pause-motion:hover { color: var(--preto); }
-@media (prefers-reduced-motion: no-preference) {
-  .js .reviews {
-    display: flex; justify-content: center; gap: 24px;
-    max-height: 640px; overflow: hidden;
-    -webkit-mask-image: linear-gradient(to bottom, transparent, #000 18%, #000 82%, transparent);
-    mask-image: linear-gradient(to bottom, transparent, #000 18%, #000 82%, transparent);
-  }
-  .js .reviews-col { flex: 1; min-width: 0; }
-  .js .reviews-col:nth-child(n+2) { display: none; }
-  .js .reviews-track { padding-bottom: 24px; animation: reviews-up var(--dur, 40s) linear infinite; }
-  .js .reviews:hover .reviews-track { animation-play-state: paused; }
-  .js .pause-motion { display: inline-block; }
-  .motion-paused .reviews-track { animation-play-state: paused !important; }
+.faq summary::-webkit-details-marker { display: none; }
+/* sinal de mais em verde, que vira X quando a resposta abre */
+.faq summary::after {
+  content: ""; flex: none; width: 20px; height: 20px;
+  background: linear-gradient(var(--lima), var(--lima)) center / 100% 2px no-repeat, linear-gradient(var(--lima), var(--lima)) center / 2px 100% no-repeat;
+  transition: transform .3s var(--ease);
 }
-@media (prefers-reduced-motion: no-preference) and (min-width: 720px) { .js .reviews-col:nth-child(2) { display: block; } }
-@media (prefers-reduced-motion: no-preference) and (min-width: 1100px) { .js .reviews-col:nth-child(3) { display: block; } }
-@keyframes reviews-up { to { transform: translateY(-50%); } }
+.faq details[open] summary::after { transform: rotate(45deg); }
+.faq details p { max-width: 52ch; padding-bottom: 24px; }
+
+/* ---------- Contato ---------- */
+.contact { padding-block: var(--rhythm); background: var(--lima); color: var(--preto); }
+.contact-grid { display: grid; gap: 32px; }
+@media (min-width: 900px) { .contact-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 64px; align-items: end; } }
+.contact-title { font-weight: 300; font-size: clamp(36px, 5.4vw, 84px); line-height: 1.04; letter-spacing: -.03em; color: var(--preto); text-wrap: balance; }
+.contact-phone {
+  display: inline-block; font-weight: 700; font-size: clamp(28px, 7vw, 56px); line-height: 1.1;
+  white-space: nowrap; font-variant-numeric: tabular-nums; color: var(--preto);
+  text-decoration: underline; text-decoration-thickness: 3px; text-underline-offset: 8px;
+}
+.contact-phone:hover { text-decoration-thickness: 5px; }
+@media (min-width: 900px) { .contact-phone { font-size: clamp(32px, 3.8vw, 56px); } } /* meia largura: o número inteiro cabe na coluna */
+.contact-grid p { max-width: 36ch; margin-top: 20px; font-size: 17px; }
 
 /* ---------- Rodapé ---------- */
-/* o espaço embaixo é para os botões flutuantes não cobrirem o texto */
-.site-footer { padding: 72px 0 104px; font-size: 15px; line-height: 1.75; }
-.footer-grid { display: grid; gap: 40px; }
-@media (min-width: 720px) { .footer-grid { grid-template-columns: 1fr 1fr; } }
-@media (min-width: 1100px) { .footer-grid { grid-template-columns: 2fr 1fr 1fr; } }
+/* logo à esquerda e as colunas ao lado, numa faixa só */
+.site-footer { padding: 72px 0 40px; font-size: 15px; line-height: 1.75; }
+.footer-grid { display: grid; gap: 32px; align-items: start; }
+@media (min-width: 720px) { .footer-grid { grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr) minmax(0, 1fr); } }
+.site-footer .logo { margin-right: 0; text-decoration: none; }
+.site-footer .logo-word { display: inline; } /* no rodapé o nome aparece até no celular */
 .site-footer .label { margin-bottom: 12px; color: var(--branco); }
-.footer-logo { width: auto; height: 72px; }
 .site-footer a { text-decoration: underline; text-decoration-color: rgba(255,255,255,.3); text-underline-offset: 4px; transition: color .2s, text-decoration-color .2s; }
 .site-footer a:hover { color: var(--branco); text-decoration-color: currentColor; }
 .footer-bottom {
@@ -260,38 +253,9 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 /* o fio acompanha a largura do conteúdo, e não a da caixa com o gutter */
 .footer-bottom::before { content: ""; position: absolute; top: 0; left: var(--gutter); right: var(--gutter); border-top: 1px solid var(--fio); }
 
-/* o WhatsApp fica no topo fixo; o botão de menu só aparece depois de rolar o hero */
-.js .site-header:not(.is-scrolled) ~ .menu-btn { opacity: 0; visibility: hidden; }
-
-/* ---------- Menu flutuante (abaixo de 1024px, onde o menu do header some) ---------- */
-.menu-btn { display: none; }
-.menu-btn .icon-close { display: none; }
-.menu-btn[aria-expanded="true"] .icon-open { display: none; }
-.menu-btn[aria-expanded="true"] .icon-close { display: block; }
-@media (max-width: 1023px) {
-  .js .menu-btn {
-    position: fixed; right: 24px; bottom: 24px; z-index: 60;
-    display: grid; place-items: center;
-    width: 56px; height: 56px; padding: 0; cursor: pointer;
-    background: var(--preto-2); color: var(--branco);
-    border: 1px solid rgba(255,255,255,.25);
-    transition: opacity .3s var(--ease), visibility .3s;
-  }
-}
-.menu-panel {
-  position: fixed; inset: 0; z-index: 55; overflow-y: auto;
-  padding: 88px var(--gutter) 120px;
-  background: var(--preto);
-}
-.menu-panel[hidden] { display: none; }
-.menu-panel ul { border-top: 1px solid var(--fio); }
-.menu-panel a { display: block; padding: 12px 0; border-bottom: 1px solid var(--fio); font-weight: 700; font-size: 32px; line-height: 1.25; text-decoration: none; }
-.menu-open { overflow: hidden; }
-@media (min-width: 1024px) { .menu-panel { display: none !important; } }
-
 /* ---------- Telas estreitas ---------- */
 @media (max-width: 479px) {
-  .logo-word { display: none; } /* o nome completo aparece logo abaixo, no hero */
+  .logo-word { display: none; } /* fica só o monograma; o nome aparece no texto do início */
   .btn:not(.btn--sm) { width: 100%; }
 }
 
@@ -304,13 +268,15 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
   }
   .js .reveal.is-in { opacity: 1; transform: none; }
 
-  /* entrada do início: a foto se ajusta devagar e o logo e a frase sobem suaves */
-  .hero-media { animation: hero-zoom 6s var(--ease) both; }
-  .hero-logo { animation: hero-in .9s var(--ease) .15s both; }
-  .hero-title { animation: hero-in .9s var(--ease) .35s both; }
+  /* entrada do início: o slogan sobe, a foto se ajusta devagar e o triângulo entra pelo canto */
+  .hero-title { animation: hero-in .9s var(--ease) .1s both; }
+  .hero-sub { animation: hero-in .9s var(--ease) .3s both; }
+  .hero-photo img { animation: hero-zoom 6s var(--ease) both; }
+  .shape-tri { animation: tri-in .9s var(--ease) .5s both; }
   .menu-panel:not([hidden]) { animation: menu-in .25s var(--ease); }
 }
-@keyframes hero-zoom { from { transform: scale(1.08); } }
 @keyframes hero-in { from { opacity: 0; transform: translateY(16px); } }
+@keyframes hero-zoom { from { transform: scale(1.06); } }
+@keyframes tri-in { from { transform: translate(-30%, 30%); opacity: 0; } }
 @keyframes menu-in { from { opacity: 0; transform: translateY(8px); } }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }

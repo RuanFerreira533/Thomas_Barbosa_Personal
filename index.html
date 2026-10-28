@@ -4,10 +4,10 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Thomás Barbosa, personal trainer em Santa Isabel, SP</title>
-  <meta name="description" content="Consultoria online e treino presencial com Thomás Barbosa, especialista em hipertrofia. Fale comigo pelo WhatsApp.">
+  <meta name="description" content="Thomás Barbosa, personal trainer especialista em hipertrofia, o ganho de massa muscular. Treino individual online ou presencial em Santa Isabel, SP.">
   <meta property="og:type" content="website">
   <meta property="og:title" content="Thomás Barbosa. O primeiro passo é treinar, o próximo é se transformar.">
-  <meta property="og:description" content="Consultoria online e treino presencial com Thomás Barbosa, especialista em hipertrofia.">
+  <meta property="og:description" content="Personal trainer especialista em hipertrofia, o ganho de massa muscular.">
   <!-- og:image entra quando houver domínio: precisa do endereço completo (https://.../img/og.jpg, 1200x630) -->
   <meta name="theme-color" content="#000000">
   <link rel="icon" href="img/favicon.png" type="image/png">
@@ -26,165 +26,175 @@
 <body>
   <a class="skip" href="#conteudo">Pular para o conteúdo</a>
 
-  <header class="site-header" data-header>
+  <header class="site-header">
     <div class="wrap header-inner">
       <a class="logo" href="#inicio" aria-label="Thomás Barbosa, voltar ao início">
         <img src="img/monograma.png" alt="" />
         <span class="logo-word">Thomás Barbosa</span>
       </a>
       <nav class="nav" aria-label="Principal">
-        <a href="#inicio">Início</a>
         <a href="#historia">História</a>
         <a href="#como-funciona">Como funciona</a>
-        <a href="#servicos">Serviços</a>
         <a href="#avaliacoes">Avaliações</a>
+        <a href="#perguntas">Perguntas</a>
       </nav>
       <a class="btn btn--solid btn--sm btn--wa" href="https://wa.me/5511997741743?text=Ol%C3%A1%2C%20Thom%C3%A1s!%20Quero%20come%C3%A7ar%20a%20treinar." target="_blank" rel="noopener" aria-label="Chamar no WhatsApp (abre em nova aba)">
         <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false"><path fill="currentColor" d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
         WhatsApp
       </a>
+      <button class="menu-btn" type="button" data-menu-btn aria-expanded="false" aria-controls="menu-mobile" aria-label="Abrir menu">
+        <svg class="icon-open" viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" focusable="false"><path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2" fill="none"/></svg>
+        <svg class="icon-close" viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" focusable="false"><path d="M5 5l14 14M19 5L5 19" stroke="currentColor" stroke-width="2" fill="none"/></svg>
+      </button>
     </div>
   </header>
 
+  <!-- Menu do celular (abaixo de 1024px): abre embaixo do topo, que continua clicável para fechar -->
+  <nav class="menu-panel" id="menu-mobile" aria-label="Menu" hidden>
+    <ul>
+      <li><a href="#historia">História</a></li>
+      <li><a href="#como-funciona">Como funciona</a></li>
+      <li><a href="#avaliacoes">Avaliações</a></li>
+      <li><a href="#perguntas">Perguntas</a></li>
+      <li><a href="#contato">Contato</a></li>
+    </ul>
+  </nav>
+
   <main id="conteudo">
-    <!-- Início: só a foto, o logo e a frase -->
-    <section class="hero" id="inicio">
-      <img class="hero-media" src="img/hero.jpg" alt="Thomás Barbosa de regata preta na academia" />
-      <div class="wrap hero-content">
-        <img class="hero-logo" src="img/logo.png" alt="Thomás Barbosa, Personal Trainer" />
-        <!-- PROVISÓRIO: frase do topo -->
-        <h1 class="hero-title"><strong>Especialista em hipertrofia.</strong> Online ou em Santa Isabel, SP.</h1>
+    <!-- Início: o slogan como pôster e a foto recortada pelas formas da marca -->
+    <section class="hero" id="inicio" aria-labelledby="inicio-titulo">
+      <div class="hero-text">
+        <h1 class="hero-title" id="inicio-titulo">O <strong>primeiro passo</strong> é treinar, o próximo é se <strong>transformar</strong>.</h1>
+        <p class="hero-sub">Thomás Barbosa, personal trainer em Santa Isabel, SP. Especialista em hipertrofia, o ganho de massa muscular.</p>
       </div>
-    </section>
-
-    <!-- História: a foto encosta na borda esquerda da tela -->
-    <section class="section section--light story" id="historia" aria-labelledby="historia-titulo">
-      <figure class="story-media reveal">
-        <img src="img/historia.jpg" alt="Thomás tirando uma foto no espelho da academia" loading="lazy" />
+      <figure class="hero-photo">
+        <img src="img/hero.jpg" alt="Thomás Barbosa de regata preta na academia" />
+        <span class="shape-tri" aria-hidden="true"></span>
       </figure>
-      <div class="story-body">
-        <p class="label reveal">História</p>
-        <h2 class="h2 reveal" id="historia-titulo"><strong>Perdi 30 kg</strong> em 6 meses.</h2>
-        <!-- PROVISÓRIO: texto montado com os dados do manual; trocar pela história contada pelo Thomás -->
-        <p class="lead reveal">Já trabalho há alguns anos na educação física e sou especialista em hipertrofia. Sei na prática o que é mudar o corpo, porque mudei o meu.</p>
-        <p class="reveal">Agora levo essa experiência para a consultoria. Cada aluno tem um plano feito para a própria rotina, com acompanhamento de perto, online ou presencial.</p>
+    </section>
+
+    <!-- História: o número grande puxa a leitura; no celular o texto vem antes da foto -->
+    <section class="section section--light" id="historia" aria-labelledby="historia-titulo">
+      <div class="wrap story">
+        <figure class="story-photo reveal">
+          <img src="img/historia.jpg" alt="Thomás tirando uma foto no espelho da academia" loading="lazy" />
+        </figure>
+        <div class="story-text">
+          <p class="label reveal">História</p>
+          <h2 class="story-title reveal" id="historia-titulo"><span class="stat">30 kg</span> a menos em 6 meses.</h2>
+          <!-- PROVISÓRIO: só com os dados do manual e do pedido; trocar pela história contada pelo Thomás -->
+          <p class="lead reveal">Eu sei como é começar. Depois de perder 30 kg, me especializei em hipertrofia.</p>
+          <p class="reveal">Já trabalho há alguns anos na educação física e agora começo a consultoria individual: um treino feito para a sua rotina, com acompanhamento de perto.</p>
+        </div>
       </div>
     </section>
 
-    <!-- Como funciona: título fixo à esquerda e o passo a passo à direita -->
+    <!-- Como funciona: um cartão para cada jeito de treinar, com respostas concretas -->
     <section class="section" id="como-funciona" aria-labelledby="como-titulo">
-      <div class="wrap how">
-        <header class="how-head">
-          <p class="label reveal">Como funciona</p>
-          <h2 class="h2 reveal" id="como-titulo">Você treina, <strong>eu acompanho.</strong></h2>
-        </header>
-        <!-- PROVISÓRIO: passos genéricos de consultoria; trocar pelo passo a passo do Thomás -->
-        <ol class="steps" role="list">
-          <li class="reveal">
-            <div>
-              <h3>Conversa inicial</h3>
-              <p>Você me conta sua rotina, seu objetivo e seu histórico de treino.</p>
-            </div>
-          </li>
-          <li class="reveal">
-            <div>
-              <h3>Avaliação</h3>
-              <p>Vejo seu ponto de partida e o tempo que você tem por semana.</p>
-            </div>
-          </li>
-          <li class="reveal">
-            <div>
-              <h3>Treino feito para você</h3>
-              <p>Você recebe o plano com as orientações de cada exercício.</p>
-            </div>
-          </li>
-          <li class="reveal">
-            <div>
-              <h3>Acompanhamento</h3>
-              <p>Conforme você evolui, ajusto a carga e os exercícios.</p>
-            </div>
-          </li>
-        </ol>
-      </div>
-    </section>
-
-    <!-- Faixa do slogan: a única seção verde, sempre entre dois pretos -->
-    <section class="slogan" aria-label="Slogan">
       <div class="wrap">
-        <p class="slogan-text reveal">O <strong>primeiro passo</strong> é treinar, o próximo é se <strong>transformar</strong>.</p>
+        <p class="label reveal">Como funciona</p>
+        <h2 class="h2 reveal" id="como-titulo">Dois jeitos de <strong>treinar comigo.</strong></h2>
+        <!-- respostas do Thomás (2026-10-27); "Acompanhamento" do presencial é PROVISÓRIO -->
+        <div class="modes">
+          <article class="mode reveal">
+            <h3>Online</h3>
+            <p class="mode-sum">Para você treinar onde estiver.</p>
+            <dl class="mode-list">
+              <div><dt>Plataforma</dt><dd>WhatsApp, das 8h às 22h</dd></div>
+              <div><dt>Acompanhamento</dt><dd>Plano de treino e avaliações</dd></div>
+            </dl>
+          </article>
+          <article class="mode reveal">
+            <h3>Presencial</h3>
+            <p class="mode-sum">Treino ao meu lado, em Santa Isabel, SP.</p>
+            <dl class="mode-list">
+              <div><dt>Local</dt><dd>Academia Sky Fit</dd></div>
+              <div><dt>Horários</dt><dd>A marcar</dd></div>
+              <div><dt>Acompanhamento</dt><dd>Correção de cada movimento durante o treino</dd></div>
+            </dl>
+          </article>
+        </div>
       </div>
     </section>
 
-    <!-- Serviços e contato: sem preço no site (pedido do cliente); os valores vão pelo WhatsApp -->
-    <!-- título de um lado e o WhatsApp do outro, na mesma linha (no celular, um embaixo do outro) -->
-    <section class="section" id="servicos" aria-labelledby="servicos-titulo">
-      <div class="wrap contact">
-        <div>
-          <p class="label reveal">Serviços</p>
-          <!-- PROVISÓRIO: título -->
-          <h2 class="h2 reveal" id="servicos-titulo">Online ou presencial. <strong>Você escolhe.</strong></h2>
-        </div>
-        <div class="reveal">
-          <p class="label">WhatsApp</p>
-          <p class="phone">(11) 99774-1743</p>
-          <p class="contact-text">Me conte seu objetivo e eu passo os valores e como começar.</p>
-          <a class="btn btn--solid" href="https://wa.me/5511997741743?text=Ol%C3%A1%2C%20Thom%C3%A1s!%20Quero%20come%C3%A7ar%20a%20treinar." target="_blank" rel="noopener" aria-label="Chamar no WhatsApp (abre em nova aba)">Chamar no WhatsApp</a>
-        </div>
-      </div>
-    </section>
-
-    <!-- Avaliações: colunas que sobem devagar em loop (o JS repete os cards) -->
+    <!-- Avaliações: uma em destaque e as outras em grade (textos reais, com a ortografia corrigida a pedido do usuário) -->
     <section class="section section--light" id="avaliacoes" aria-labelledby="avaliacoes-titulo">
       <div class="wrap">
-        <header class="reviews-head">
-          <p class="label reveal">Avaliações</p>
-          <h2 class="h2 reveal" id="avaliacoes-titulo">O que dizem <strong>os alunos</strong></h2>
-        </header>
+        <p class="label reveal">Avaliações</p>
+        <h2 class="h2 reveal" id="avaliacoes-titulo">O que dizem <strong>os alunos</strong></h2>
 
-        <!-- textos reais das alunas (prints do Instagram e do WhatsApp), copiados sem corrigir -->
-        <div class="reviews reveal">
-          <div class="reviews-col">
-            <div class="reviews-track" data-loop style="--dur: 60s">
-              <figure class="review">
-                <blockquote><p>Tenham pessoas que te incentivem, que te façam ir além! Nunca gostei de ter personal homem porque sempre achei que não ia rolar sabe? Cobranças, ajuda e afins.. Mas com ele é ótimo, tudo com muito respeito, cautela e claro, é um excelente profissional!</p></blockquote>
-                <figcaption><span class="review-avatar" aria-hidden="true">K</span><span><span class="review-name">Karine R.</span><span class="review-meta">Instagram</span></span></figcaption>
-              </figure>
-              <figure class="review">
-                <blockquote><p>Eu que tenho que agradecer , esse nosso personal que dá conta de tudo e um pouco mais</p></blockquote>
-                <figcaption><span class="review-avatar" aria-hidden="true">C</span><span><span class="review-name">Cristiane O.</span><span class="review-meta">Instagram</span></span></figcaption>
-              </figure>
-            </div>
+        <figure class="quote-hero reveal">
+          <span class="quote-mark" aria-hidden="true">“</span>
+          <div>
+            <blockquote>
+              <p>É muito bom quando, além de personal, temos um amigo.</p>
+              <p>E não tem uma pessoa que não goste de você. Você faz nossas manhãs sempre muito produtivas.</p>
+              <p>Aí na academia eu já passei com 3 professores e você superou todos.</p>
+            </blockquote>
+            <figcaption><span class="review-name">Cristiane O.</span> <span class="review-meta">Instagram</span></figcaption>
           </div>
-          <div class="reviews-col">
-            <div class="reviews-track" data-loop style="--dur: 72s">
-              <figure class="review">
-                <blockquote>
-                  <p>É muito bom quando além de personal temos um amigo .</p>
-                  <p>E não tem uma pessoa que não goste de você , você faz nossas manhãs sempre muito produtiva .</p>
-                  <p>Aí na academia eu já passei com 3 professores e vc superou todos</p>
-                </blockquote>
-                <figcaption><span class="review-avatar" aria-hidden="true">C</span><span><span class="review-name">Cristiane O.</span><span class="review-meta">Instagram</span></span></figcaption>
-              </figure>
-            </div>
-          </div>
-          <div class="reviews-col">
-            <div class="reviews-track" data-loop style="--dur: 66s">
-              <figure class="review">
-                <blockquote><p>Oi tom bom dia . Quero te agradecer pelo carinho q vc teve comigo e com o Dorgival. Iremos treinar agora a noite pq meu horário de trabalhar mudou pra mais cedo . Vamos sentir sua falta. Q Deus te abençoe e te proteja vc é um excelente professor. Parabéns 👏💝</p></blockquote>
-                <figcaption><span class="review-avatar" aria-hidden="true">A</span><span><span class="review-name">Angélica</span><span class="review-meta">WhatsApp</span></span></figcaption>
-              </figure>
-              <figure class="review">
-                <blockquote><p>Confesso que fiquei nervosa na ora que vi o caixote ,mas depois superei</p></blockquote>
-                <figcaption><span class="review-avatar" aria-hidden="true">C</span><span><span class="review-name">Cristiane O.</span><span class="review-meta">Instagram</span></span></figcaption>
-              </figure>
-            </div>
-          </div>
+        </figure>
+
+        <div class="quotes">
+          <figure class="review reveal">
+            <blockquote><p>Tenham pessoas que te incentivem, que te façam ir além! Nunca gostei de ter personal homem porque sempre achei que não ia rolar, sabe? Cobranças, ajuda e afins... Mas com ele é ótimo, tudo com muito respeito, cautela e, claro, é um excelente profissional!</p></blockquote>
+            <figcaption><span class="review-avatar" aria-hidden="true">K</span><span><span class="review-name">Karine R.</span><span class="review-meta">Instagram</span></span></figcaption>
+          </figure>
+          <figure class="review reveal">
+            <blockquote><p>Oi, Tom, bom dia. Quero te agradecer pelo carinho que você teve comigo e com o Dorgival. Iremos treinar agora à noite porque meu horário de trabalhar mudou para mais cedo. Vamos sentir sua falta. Que Deus te abençoe e te proteja, você é um excelente professor. Parabéns 👏💝</p></blockquote>
+            <figcaption><span class="review-avatar" aria-hidden="true">A</span><span><span class="review-name">Angélica</span><span class="review-meta">WhatsApp</span></span></figcaption>
+          </figure>
+          <figure class="review reveal">
+            <blockquote><p>Eu que tenho que agradecer, esse nosso personal que dá conta de tudo e um pouco mais.</p></blockquote>
+            <figcaption><span class="review-avatar" aria-hidden="true">C</span><span><span class="review-name">Cristiane O.</span><span class="review-meta">Instagram</span></span></figcaption>
+          </figure>
+          <figure class="review reveal">
+            <blockquote><p>Confesso que fiquei nervosa na hora que vi o caixote, mas depois superei.</p></blockquote>
+            <figcaption><span class="review-avatar" aria-hidden="true">C</span><span><span class="review-name">Cristiane O.</span><span class="review-meta">Instagram</span></span></figcaption>
+          </figure>
         </div>
 
-        <div class="actions reviews-actions reveal">
-          <!-- os depoimentos vieram do Instagram e do WhatsApp; no Instagram ficam os destaques "Feedbacks" -->
+        <div class="actions reveal">
           <a class="btn btn--ghost" href="https://www.instagram.com/thom.barbosa.personal/" target="_blank" rel="noopener" aria-label="Ver mais no Instagram (abre em nova aba)">Ver mais no Instagram</a>
-          <button class="pause-motion" type="button" data-pause aria-pressed="false">Pausar movimento</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Perguntas: as dúvidas que o cliente levantou, abrindo e fechando (funciona sem JS) -->
+    <section class="section" id="perguntas" aria-labelledby="perguntas-titulo">
+      <div class="wrap faq-grid">
+        <div>
+          <p class="label reveal">Perguntas</p>
+          <h2 class="h2 reveal" id="perguntas-titulo">Antes de <strong>começar</strong></h2>
+        </div>
+        <div class="faq reveal">
+          <details>
+            <summary>Onde é o treino presencial?</summary>
+            <p>Na academia Sky Fit, em Santa Isabel, SP. O horário a gente combina.</p>
+          </details>
+          <details>
+            <summary>Qual aplicativo eu uso no online?</summary>
+            <p>Nenhum além do WhatsApp. Todo o atendimento é por lá.</p>
+          </details>
+          <details>
+            <summary>Em que horário você responde no WhatsApp?</summary>
+            <p>Das 8h às 22h. Mensagem fora desse horário eu respondo assim que visualizar.</p>
+          </details>
+          <details>
+            <summary>Quanto custa?</summary>
+            <p>Os valores eu passo pelo WhatsApp, depois de entender o seu objetivo.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contato: o número inteiro é o link do WhatsApp (o botão do topo já está sempre na tela) -->
+    <section class="contact" id="contato" aria-labelledby="contato-titulo">
+      <div class="wrap contact-grid">
+        <h2 class="contact-title reveal" id="contato-titulo">Me conte <strong>seu objetivo.</strong></h2>
+        <div class="reveal">
+          <a class="contact-phone" href="https://wa.me/5511997741743?text=Ol%C3%A1%2C%20Thom%C3%A1s!%20Quero%20come%C3%A7ar%20a%20treinar." target="_blank" rel="noopener" aria-label="(11) 99774-1743, abrir no WhatsApp (abre em nova aba)">(11) 99774-1743</a>
+          <p>Toque no número para abrir o WhatsApp. Os valores eu passo por lá.</p>
         </div>
       </div>
     </section>
@@ -192,41 +202,26 @@
 
   <footer class="site-footer">
     <div class="wrap footer-grid">
-      <div class="footer-brand">
-        <img class="footer-logo" src="img/logo.png" alt="Thomás Barbosa, Personal Trainer" loading="lazy" />
-      </div>
-      <div>
-        <p class="label">Atendimento</p>
-        <p>Online em qualquer cidade<br>Presencial em Santa Isabel, SP</p>
-      </div>
-      <div>
-        <p class="label">Redes</p>
-        <ul class="footer-links">
-          <li><a href="https://www.instagram.com/thom.barbosa.personal/" target="_blank" rel="noopener">Instagram</a></li>
-          <li><a href="https://wa.me/5511997741743" target="_blank" rel="noopener">WhatsApp</a></li>
-        </ul>
-      </div>
+      <a class="logo" href="#inicio" aria-label="Thomás Barbosa, voltar ao início">
+        <img src="img/monograma.png" alt="" loading="lazy" />
+        <span class="logo-word">Thomás Barbosa</span>
+      </a>
+        <div>
+          <p class="label">Atendimento</p>
+          <p>Online pelo WhatsApp, das 8h às 22h<br>Presencial na Sky Fit, Santa Isabel, SP</p>
+        </div>
+        <div>
+          <p class="label">Redes</p>
+          <ul class="footer-links">
+            <li><a href="https://www.instagram.com/thom.barbosa.personal/" target="_blank" rel="noopener">Instagram</a></li>
+            <li><a href="https://wa.me/5511997741743" target="_blank" rel="noopener">WhatsApp</a></li>
+          </ul>
+        </div>
     </div>
     <div class="wrap footer-bottom">
       <p>© <span data-year>2026</span> Thomás Barbosa.</p>
       <p>Feito por <a href="https://www.instagram.com/ruandesenv/" target="_blank" rel="noopener">Ruan Ferreira</a></p>
     </div>
   </footer>
-
-  <!-- Menu flutuante (abaixo de 1024px): botão no canto + painel de navegação -->
-  <button class="menu-btn" type="button" data-menu-btn aria-expanded="false" aria-controls="menu-mobile" aria-label="Abrir menu">
-    <svg class="icon-open" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false"><path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2" fill="none"/></svg>
-    <svg class="icon-close" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false"><path d="M5 5l14 14M19 5L5 19" stroke="currentColor" stroke-width="2" fill="none"/></svg>
-  </button>
-  <nav class="menu-panel" id="menu-mobile" aria-label="Menu" hidden>
-    <ul>
-      <li><a href="#inicio">Início</a></li>
-      <li><a href="#historia">História</a></li>
-      <li><a href="#como-funciona">Como funciona</a></li>
-      <li><a href="#servicos">Serviços</a></li>
-      <li><a href="#avaliacoes">Avaliações</a></li>
-    </ul>
-  </nav>
-
 </body>
 </html>
